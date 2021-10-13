@@ -36,17 +36,17 @@ def verificare_cifre_prime(numar):
     :param numar:
     :return:
     """
-    str_nr = str(numar)
-    for cifre in range(0, len(str_nr)):
-        cifra_verificare = int(str_nr[cifre])
-        if not Prime(cifra_verificare):
+    string_transform = str(numar)
+    for digits in range(0, len(string_transform)):
+        digits_verify = int(string_transform[digits])
+        if not Prime(digits_verify):
             return False
     return True
 
 
 def subsecventa_verificare_sir(lista: list):
-    for el in lista:
-        if not verificare_cifre_prime(el):
+    for elements in lista:
+        if not verificare_cifre_prime(elements):
             return False
     return True
 
@@ -134,7 +134,7 @@ def print_menu():
 ''')
 
 
-def meniu():
+def menu():
     the_list = []
 
     while True:
@@ -151,4 +151,4 @@ def meniu():
             break
 
 
-meniu()
+menu()
