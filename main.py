@@ -121,6 +121,11 @@ def get_longest_prime_digits(the_list: list):
 
 # A treia problema
 def get_longest_sorted_asc(the_list: list):
+    '''
+    Functia verifica daca elementele sunt sortate in ordine crescatoare
+    :param the_list:
+    :return: True daca sunt False daca nu sunt
+    '''
     minim = -1
     for element in the_list:
         if element > minim:
@@ -131,10 +136,18 @@ def get_longest_sorted_asc(the_list: list):
     pass
 
 
+def test_get_longest_sorted_asc():
+    assert get_longest_sorted_asc([1, 2, 3, 4, 5, 6, 7, 100]) is True
+    assert get_longest_sorted_asc([3, 2, 1, 5, 3, 4, 5, 6]) is False
+    assert get_longest_sorted_asc([10, 100, 1000, 10000, 1000000]) is True
+    assert get_longest_sorted_asc([1000, 100, 10, 1]) is False
+
+
 def test_func():
     test_get_longest_all_not_prime()
     test_get_longest_prime_digits()
     test_verificare_cifre_prime()
+    test_get_longest_sorted_asc()
 
 
 def print_menu():
