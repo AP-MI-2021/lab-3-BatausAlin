@@ -1,9 +1,9 @@
-def is_prim(number):
-    '''
+def Prime(number):
+    """
     Verifică dacă un număr este prim\n
     :param number: Număr natural
     :return: True -> numărul este prim sau False -> numărul nu este prim
-    '''
+    """
     if number < 2:
         return False
     if number == 2 or number == 3:
@@ -15,133 +15,141 @@ def is_prim(number):
             return False
 
     return True
-    pass
 
 
-def get_longest_all_not_prime(lista: list[int]):
-    '''
-    Verifică dacă toate numerele sunt neprime
-    :param lista: Lista
+def verifica_numere_care_nu_sunt_prime(lista: list[int]):
+    """
+    Verifică dacă numerele din lista nu sunt prime
+    :param lista: Lista cu numerele
     :return: True -> dacă toate numerele sunt neprime sau False -> dacă există numere prime
-    '''
+    """
     for items in lista:
-        if is_prim(items):
+        if Prime(items):
             return False
     return True
-    pass
-
-
-def test_get_longest_all_not_prime():
-    assert get_longest_all_not_prime([4, 6, 12, 18]) is True
-    assert get_longest_all_not_prime([4, 2, 9, 12]) is False
-    assert get_longest_all_not_prime([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]) is False
-
-
-
-def Problema_1(lista):
-    '''
-    Calculeaza subsecventa car
-    :param lista:
-    :return:
-    '''
-    subsecventa_finala = []
-    subsecventa_temporala = []
-    for inceput in range(0, len(lista)):
-        for sfarsit in range(inceput + 1, len(lista)):
-            if get_longest_all_not_prime(lista[inceput:sfarsit]) is True:
-                subsecventa_temporala = lista[inceput:sfarsit]
-                if len(subsecventa_finala) < len(subsecventa_temporala):
-                    subsecventa_finala = subsecventa_temporala[:]
-                    subsecventa_temporala = []
-                pass
-            else:
-                break
-    return subsecventa_finala
     pass
 
 
 def verificare_cifre_prime(numar):
+    """
+    Verifica daca cifrele unui numar sunt prime
+    :param numar:
+    :return:
+    """
     str_nr = str(numar)
     for cifre in range(0, len(str_nr)):
         cifra_verificare = int(str_nr[cifre])
-        if not is_prim(cifra_verificare):
+        if not Prime(cifra_verificare):
             return False
     return True
-    pass
-
-
-def test_verificare_cifre_prime():
-    assert verificare_cifre_prime(23257) is True
-    assert verificare_cifre_prime(232457) is False
-    assert verificare_cifre_prime(2223) is True
-    assert verificare_cifre_prime(123) is False
 
 
 def subsecventa_verificare_sir(lista: list):
     for el in lista:
         if not verificare_cifre_prime(el):
             return False
-
     return True
-    pass
 
 
-def get_longest_prime_digits(lista: list):
-    subsecventa_finala = []
-    subsecventa_temp = []
-    for inceput in range(0, len(lista)):
-        for sfarsit in range(inceput + 1, len(lista) + 1):
-            if subsecventa_verificare_sir(lista[inceput:sfarsit]) is True:
-                subsecventa_temporala = lista[inceput:sfarsit]
-                if len(subsecventa_finala) < len(subsecventa_temporala):
-                    subsecventa_finala = subsecventa_temporala[:]
-                    subsecventa_temporala = []
-                pass
-            else:
-                break
-    return subsecventa_finala
-    pass
+def list_read_function():
+    list_read = [int(numbers) for numbers in input('Insert elements: ').split(' ')]
+    return list_read
 
 
 def test_get_longest_prime_digits():
-    assert get_longest_prime_digits([2, 3, 2, 3, 2, 1, 2, 3, 2, 1, 5]) == [2, 3, 2, 3, 2]
-    assert get_longest_prime_digits([1, 2, 2, 1, 1, 2, 2, 2, 2, 1, 3, 3, 3, 5, 5, 5, 7, 1]) == [3, 3, 3, 5, 5, 5, 7]
+    assert get_longest_prime_digits([2, 3, 22, 55, 2552, 1, 11, 12, 98]) == [2, 3, 22, 55, 2552]
+    assert get_longest_prime_digits([1, 3, 11, 55, 25, 76]) == [55, 25]
+    assert get_longest_prime_digits([98, 55, 66, 45, 3, 2, 3, 54, 56]) == [3, 2, 3]
 
 
+def test_get_longest_all_not_prime():
+    assert verifica_numere_care_nu_sunt_prime([25, 36, 713, 388]) is True
+    assert verifica_numere_care_nu_sunt_prime([45, 11, 67, 512]) is False
+    assert verifica_numere_care_nu_sunt_prime([12, 13, 14, 15]) is False
 
 
-def citire_lista():
-    lista = [int(e) for e in input('Introduceti elementele separate prin spatiu: ').split(' ')]
-    return lista
+def test_verificare_cifre_prime():
+    assert verificare_cifre_prime(757372) is True
+    assert verificare_cifre_prime(23715773257) is False
+    assert verificare_cifre_prime(2735772223) is True
+    assert verificare_cifre_prime(9876543234567123) is False
 
 
+# Prima problema
+def get_longest_all_not_prime(the_list):
+    """
+    Calculeaza subsecventa de siruri care nu sunt prime
+    :param lista: O lista cu numere
+    :return:Returneaza cea mai lunga subsecventa de siruri
+    """
+    final_list = []
+    temp_list = []
+    for left in range(0, len(the_list)):
+        for right in range(left + 1, len(the_list)):
+            if verifica_numere_care_nu_sunt_prime(the_list[left:right]) is True:
+                temp_list = the_list[left:right]
+                if len(final_list) < len(temp_list):
+                    final_list = temp_list[:]
+                    temp_list = []
+                pass
+            else:
+                break
+    return final_list
 
 
-def meniu():
+# A doua problema
+def get_longest_prime_digits(the_list: list):
+    '''
+    Calculeaza subsecventa de siruri in care numarul este format din cifre prime
+    :param the_list:
+    :return: Returneaza cea mai lunga subsecventa de siruri
+    '''
+    final_list = []
+    temp_list = []
+    for left in range(0, len(the_list)):
+        for right in range(left + 1, len(the_list) + 1):
+            if subsecventa_verificare_sir(the_list[left:right]) is True:
+                temp_list = the_list[left:right]
+                if len(final_list) < len(temp_list):
+                    final_list = temp_list[:]
+                    temp_list = []
+                pass
+            else:
+                break
+    return final_list
+
+
+def test_func():
     test_get_longest_all_not_prime()
     test_get_longest_prime_digits()
     test_verificare_cifre_prime()
 
-    sa_vedem = []
+
+def print_menu():
+    print('''
+1. Read the list.
+2. Get longest all not prime.
+3. Get longest prime digits.
+4. Exit
+''')
+
+
+def meniu():
+    the_list = []
 
     while True:
-        print('''
-        1. Citire lista
-        2.Toate numerele sunt neprime.
-        3.Toate numerele sunt formate din cifre prime.
-        4.Iesire''')
-        cmd = input('Command: ')
+        print_menu()
+        command = input('Select one option: ')
 
-        if cmd == '1':
+        if command == '1':
             pass
-            sa_vedem = citire_lista()
-        elif cmd == '2':
-            print(Problema_1(sa_vedem))
-        elif cmd == '3':
-            print(get_longest_prime_digits(sa_vedem))
-        elif cmd == '4':
+            the_list = list_read_function()
+        elif command == '2':
+            print(get_longest_all_not_prime(the_list))
+        elif command == '3':
+            print(get_longest_prime_digits(the_list))
+        elif command == '4':
             break
 
-    pass
 
 meniu()
