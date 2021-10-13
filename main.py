@@ -176,8 +176,10 @@ def menu():
         elif command == '4':
             if get_longest_sorted_asc(the_list):
                 print('Numerele sunt ordonate crescator')
+                print(the_list)
             else:
                 print('Numerele nu sunt ordonate crescator')
+                print(the_list)
         elif command == '5':
             break
 
