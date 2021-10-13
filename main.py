@@ -119,6 +119,18 @@ def get_longest_prime_digits(the_list: list):
     return final_list
 
 
+# A treia problema
+def get_longest_sorted_asc(the_list: list):
+    minim = -1
+    for element in the_list:
+        if element > minim:
+            minim = element
+        else:
+            return False
+    return True
+    pass
+
+
 def test_func():
     test_get_longest_all_not_prime()
     test_get_longest_prime_digits()
@@ -130,13 +142,14 @@ def print_menu():
 1. Read the list.
 2. Get longest all not prime.
 3. Get longest prime digits.
-4. Exit
+4. Get longest sorted asc
+5. Exit
 ''')
 
 
 def menu():
     the_list = []
-
+    test_func()
     while True:
         print_menu()
         command = input('Select one option: ')
@@ -148,6 +161,11 @@ def menu():
         elif command == '3':
             print(get_longest_prime_digits(the_list))
         elif command == '4':
+            if get_longest_sorted_asc(the_list):
+                print('Numerele sunt ordonate crescator')
+            else:
+                print('Numerele nu sunt ordonate crescator')
+        elif command == '5':
             break
 
 
