@@ -142,7 +142,6 @@ def meniu():
         command = input('Select one option: ')
 
         if command == '1':
-            pass
             the_list = list_read_function()
         elif command == '2':
             print(get_longest_all_not_prime(the_list))
