@@ -115,7 +115,9 @@ def citire_lista():
     return lista
 
 
-def functia_principala():
+
+
+def meniu():
     test_get_longest_all_not_prime()
     test_get_longest_prime_digits()
     test_verificare_cifre_prime()
@@ -142,4 +144,4 @@ def functia_principala():
 
     pass
 
-functia_principala()
+meniu()
